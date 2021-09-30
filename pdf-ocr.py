@@ -1,6 +1,7 @@
 # Import libraries
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
+#this was added to avoid BOM errors when dealing with extra large PDFs
 import pytesseract
 import sys
 from pdf2image import convert_from_path
