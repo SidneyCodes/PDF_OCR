@@ -6,6 +6,9 @@ The initial approach for this project was reading the text layer in the PDF file
 
 Quite a few articles were consulted as things went wrong, these include:
 https://www.geeksforgeeks.org/how-to-use-glob-function-to-find-files-recursively-in-python/
+
 https://www.techiedelight.com/delete-all-files-directory-python/
+
 https://stackoverflow.com/questions/45480280/convert-scanned-pdf-to-text-python
+
 https://www.geeksforgeeks.org/python-reading-contents-of-pdf-using-ocr-optical-character-recognition/
