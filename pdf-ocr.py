@@ -13,34 +13,40 @@ import glob
 pdfs = glob.glob(r"*.pdf")
 
 for pdf_path in pdfs:
+	try:
+		# Path of the pdf
+		PDF_file = f"{pdf_path}"
 
-	# Path of the pdf
-	PDF_file = f"{pdf_path}"
+		print("Part #1 : Converting PDF to images for",PDF_file)
 
-	print("Part #1 : Converting PDF to images for",PDF_file)
+		# Store all the pages of the PDF in a variable
+		pages = convert_from_path(PDF_file, 500)
 
-	# Store all the pages of the PDF in a variable
-	pages = convert_from_path(PDF_file, 500)
+		# Counter to store images of each page of PDF to image
+		image_counter = 1
 
-	# Counter to store images of each page of PDF to image
-	image_counter = 1
+		# Iterate through all the pages stored above
+		for page in pages:
 
-	# Iterate through all the pages stored above
-	for page in pages:
+			# Declaring filename for each page of PDF as JPG
+			# For each page, filename will be:
+			# PDF page 1 -> page_1.jpg
+			# ....
+			# PDF page n -> page_n.jpg
+			filename = f"page_"+str(image_counter)+".jpg"
+			
+			# Save the image of the page in system
+			page.save(filename, 'JPEG')
 
-		# Declaring filename for each page of PDF as JPG
-		# For each page, filename will be:
-		# PDF page 1 -> page_1.jpg
-		# ....
-		# PDF page n -> page_n.jpg
-		filename = f"page_"+str(image_counter)+".jpg"
-		
-		# Save the image of the page in system
-		page.save(filename, 'JPEG')
-
-		# Increment the counter to update filename
-		image_counter = image_counter + 1
-
+			# Increment the counter to update filename
+			image_counter = image_counter + 1
+	except:
+		print("\nError with",PDF_file,"\n")
+		print(f"Log file appended - {PDF_file}")
+		logfile = open("errorlog.txt", "a")
+		file_info = f'{PDF_file} - part 1 error\n'
+		logfile.write(file_info)
+		logfile.close()
 
 	print("Part #2 - Recognizing text from the images using OCR for",PDF_file)
 
